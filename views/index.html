@@ -52,7 +52,7 @@
             formData.append('photo', document.getElementById('photo').files[0]);
 
             try {
-                // Step 1: Upload image to Blob Storage
+                // Step 1: Upload image to get URL
                 const uploadRes = await fetch('/api/upload', {
                     method: 'POST',
                     body: formData
@@ -62,7 +62,7 @@
                 
                 const { imageUrl } = await uploadRes.json();
 
-                // Step 2: Create profile in Cosmos DB with image URL
+                // Step 2: Create profile with image URL
                 const profileRes = await fetch('/api/profiles', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
